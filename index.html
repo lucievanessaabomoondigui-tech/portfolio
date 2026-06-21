@@ -1,0 +1,1351 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lucie Vanessa Abomo Ondigui — Développeuse Full-Stack</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600;9..144,700;9..144,900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink: #1B1F23;
+    --ink-soft: #2A2F35;
+    --cream: #FAF8F4;
+    --cream-dim: #F1ECE3;
+    --rust: #C2541F;
+    --rust-deep: #9C4015;
+    --green: #2F6F4E;
+    --taupe: #6B6258;
+    --line: #E4DCCC;
+    --line-dark: #3A3F45;
+    --display: 'Fraunces', serif;
+    --body: 'Inter', sans-serif;
+    --mono: 'JetBrains Mono', monospace;
+  }
+
+  *{ margin:0; padding:0; box-sizing:border-box; }
+
+  html{ scroll-behavior:smooth; }
+
+  body{
+    background: var(--cream);
+    color: var(--ink);
+    font-family: var(--body);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a{ color:inherit; text-decoration:none; }
+  img{ max-width:100%; display:block; }
+
+  ::selection{ background: var(--rust); color: var(--cream); }
+
+  .wrap{
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  /* ---------- focus ---------- */
+  a:focus-visible, button:focus-visible{
+    outline: 2px solid var(--rust);
+    outline-offset: 3px;
+  }
+
+  /* ---------- NAV ---------- */
+  header.nav{
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(250,248,244,0.88);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav-inner{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding: 18px 32px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .nav-mark{
+    font-family: var(--mono);
+    font-size: 13px;
+    letter-spacing: 0.04em;
+    display:flex;
+    align-items:center;
+    gap:8px;
+  }
+  .nav-mark .dot{
+    width:8px; height:8px; border-radius:50%;
+    background: var(--rust);
+    display:inline-block;
+  }
+  .nav-links{
+    display:flex;
+    gap: 28px;
+    font-size: 14px;
+    font-weight: 500;
+  }
+  .nav-links a{
+    color: var(--taupe);
+    transition: color .2s ease;
+    position:relative;
+  }
+  .nav-links a:hover{ color: var(--ink); }
+  .nav-cta{
+    font-family: var(--mono);
+    font-size: 12.5px;
+    border: 1px solid var(--ink);
+    padding: 8px 14px;
+    border-radius: 3px;
+    transition: all .2s ease;
+  }
+  .nav-cta:hover{ background: var(--ink); color: var(--cream); }
+
+  @media (max-width: 720px){
+    .nav-links{ display:none; }
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    background: var(--ink);
+    color: var(--cream);
+    position: relative;
+    overflow: hidden;
+    padding: 96px 0 0;
+  }
+  .hero::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background-image:
+      radial-gradient(circle at 85% 18%, rgba(194,84,31,0.18), transparent 45%),
+      radial-gradient(circle at 8% 85%, rgba(47,111,78,0.14), transparent 40%);
+    pointer-events:none;
+  }
+  .hero-inner{
+    position:relative;
+    display:grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 48px;
+    align-items: end;
+  }
+  .eyebrow{
+    font-family: var(--mono);
+    font-size: 12.5px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--rust);
+    margin-bottom: 22px;
+    display:flex;
+    align-items:center;
+    gap: 10px;
+  }
+  .eyebrow::before{
+    content:"";
+    width: 26px;
+    height: 1px;
+    background: var(--rust);
+  }
+  .hero h1{
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: clamp(40px, 6vw, 72px);
+    line-height: 1.04;
+    letter-spacing: -0.01em;
+  }
+  .hero h1 em{
+    font-style: italic;
+    font-weight: 400;
+    color: var(--rust);
+  }
+  .hero-sub{
+    margin-top: 22px;
+    font-size: 17px;
+    color: #C7C2BA;
+    max-width: 46ch;
+    line-height: 1.65;
+  }
+  .hero-actions{
+    margin-top: 34px;
+    display:flex;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+  .btn{
+    font-family: var(--body);
+    font-weight: 600;
+    font-size: 14.5px;
+    padding: 13px 22px;
+    border-radius: 4px;
+    display:inline-flex;
+    align-items:center;
+    gap: 8px;
+    transition: transform .2s ease, background .2s ease, color .2s ease, border-color .2s ease;
+  }
+  .btn-primary{
+    background: var(--rust);
+    color: var(--cream);
+    border: 1px solid var(--rust);
+  }
+  .btn-primary:hover{ background: var(--rust-deep); transform: translateY(-1px); }
+  .btn-ghost{
+    border: 1px solid #4A4F55;
+    color: var(--cream);
+  }
+  .btn-ghost:hover{ border-color: var(--cream); transform: translateY(-1px); }
+
+  /* receipt signature element */
+  .receipt{
+    background: var(--cream);
+    color: var(--ink);
+    font-family: var(--mono);
+    font-size: 13px;
+    padding: 26px 24px 22px;
+    border-radius: 2px;
+    box-shadow: 0 30px 60px -20px rgba(0,0,0,0.45), 0 0 0 1px rgba(0,0,0,0.04);
+    transform: rotate(2deg);
+    position: relative;
+    margin-bottom: 18px;
+  }
+  .receipt::after{
+    content:"";
+    position:absolute;
+    left:0; right:0; bottom:-9px;
+    height: 18px;
+    background:
+      linear-gradient(135deg, var(--cream) 50%, transparent 50%) 0 0/14px 14px repeat-x;
+  }
+  .receipt-head{
+    text-align:center;
+    border-bottom: 1px dashed #C9C2B4;
+    padding-bottom: 12px;
+    margin-bottom: 12px;
+  }
+  .receipt-head .name{
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: 19px;
+    letter-spacing: 0.02em;
+  }
+  .receipt-head .role{
+    color: var(--taupe);
+    font-size: 11.5px;
+    margin-top: 4px;
+    letter-spacing: 0.04em;
+  }
+  .receipt-row{
+    display:flex;
+    justify-content:space-between;
+    gap: 12px;
+    padding: 5px 0;
+    color: var(--ink-soft);
+  }
+  .receipt-row span:last-child{
+    color: var(--rust-deep);
+    font-weight: 500;
+    text-align: right;
+  }
+  .receipt-total{
+    border-top: 1px dashed #C9C2B4;
+    margin-top: 10px;
+    padding-top: 10px;
+    display:flex;
+    justify-content:space-between;
+    font-weight: 700;
+  }
+  .receipt-total span:last-child{ color: var(--green); }
+  .receipt-foot{
+    text-align:center;
+    margin-top: 14px;
+    font-size: 10.5px;
+    color: var(--taupe);
+    letter-spacing: 0.06em;
+  }
+
+  @media (max-width: 880px){
+    .hero-inner{ grid-template-columns: 1fr; }
+    .receipt{ transform: rotate(0); max-width: 320px; }
+  }
+
+  .scroll-cue{
+    position:relative;
+    margin-top: 70px;
+    padding: 18px 0;
+    border-top: 1px solid #34393F;
+    display:flex;
+    justify-content: space-between;
+    font-family: var(--mono);
+    font-size: 11.5px;
+    color: #8A8E94;
+    letter-spacing: 0.06em;
+  }
+
+  /* ---------- DEMO ---------- */
+  .demo-section{ background: var(--cream-dim); border-bottom: 1px solid var(--line); }
+  .demo-frame-wrap{
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    overflow: hidden;
+    background: var(--ink);
+    box-shadow: 0 30px 60px -30px rgba(0,0,0,0.35);
+  }
+  .demo-toolbar{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    background: var(--ink);
+    padding: 12px 16px;
+  }
+  .demo-toolbar .dots{ display:flex; gap:6px; }
+  .demo-toolbar .dots span{ width:10px; height:10px; border-radius:50%; background:#3A3F45; }
+  .demo-toolbar .demo-url{
+    font-family: var(--mono);
+    font-size: 12px;
+    color: #ACA89F;
+    background: #14171A;
+    padding: 6px 14px;
+    border-radius: 4px;
+    flex: 1;
+    margin: 0 16px;
+    text-align: center;
+  }
+  .demo-toolbar .demo-open{
+    font-family: var(--mono);
+    font-size: 11.5px;
+    color: var(--cream);
+    border: 1px solid #4A4F55;
+    padding: 6px 12px;
+    border-radius: 4px;
+    white-space: nowrap;
+    transition: border-color .2s ease, background .2s ease;
+  }
+  .demo-toolbar .demo-open:hover{ border-color: var(--rust); background: rgba(194,84,31,0.12); }
+  .demo-frame-wrap iframe{
+    width: 100%;
+    height: 720px;
+    border: none;
+    display:block;
+    background: var(--cream);
+  }
+  .demo-note{
+    margin-top: 16px;
+    font-size: 13.5px;
+    color: var(--taupe);
+    display:flex;
+    align-items:flex-start;
+    gap: 8px;
+  }
+  .demo-note svg{ flex-shrink:0; margin-top: 2px; }
+
+  @media (max-width: 700px){
+    .demo-frame-wrap iframe{ height: 560px; }
+    .demo-toolbar .demo-url{ display:none; }
+  }
+
+  /* ---------- ARCHITECTURE ---------- */
+  .architecture{ background: var(--cream-dim); border-bottom: 1px solid var(--line); }
+  .arch-grid{
+    display:grid;
+    grid-template-columns: 0.95fr 1.05fr;
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .arch-stack, .arch-routes{ background: var(--cream-dim); padding: 36px 36px; }
+  .arch-stack h3, .arch-routes h3{
+    font-family: var(--mono);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--rust-deep);
+    margin-bottom: 22px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--line);
+  }
+  .stack-row{
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    padding: 11px 0;
+    border-bottom: 1px dashed var(--line);
+    gap: 16px;
+  }
+  .stack-row:last-child{ border-bottom:none; }
+  .stack-role{
+    font-size: 13.5px;
+    color: var(--taupe);
+    font-family: var(--mono);
+    white-space: nowrap;
+  }
+  .stack-tech{
+    font-size: 15px;
+    font-weight: 600;
+    text-align: right;
+  }
+  .arch-note{
+    margin-top: 22px;
+    font-size: 13px;
+    color: var(--taupe);
+    line-height: 1.6;
+  }
+
+  .route-group{ margin-bottom: 22px; }
+  .route-group:last-child{ margin-bottom: 0; }
+  .route-group-label{
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--green);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 10px;
+  }
+  .route{
+    display:flex;
+    align-items:baseline;
+    gap: 10px;
+    font-family: var(--mono);
+    font-size: 12.5px;
+    padding: 6px 0;
+    color: var(--ink-soft);
+  }
+  .route .method{
+    flex-shrink:0;
+    font-weight: 700;
+    width: 46px;
+    color: var(--rust);
+  }
+  .route .method.get{ color: var(--green); }
+  .route .method.put, .route .method.delete{ color: var(--rust-deep); }
+  .route .path{ word-break: break-all; }
+
+  @media (max-width: 840px){
+    .arch-grid{ grid-template-columns: 1fr; }
+  }
+
+  /* ---------- SECTION generic ---------- */
+  section{ padding: 100px 0; }
+  .section-head{
+    margin-bottom: 56px;
+    max-width: 60ch;
+  }
+  .section-num{
+    font-family: var(--mono);
+    font-size: 12.5px;
+    color: var(--rust);
+    letter-spacing: 0.1em;
+    margin-bottom: 14px;
+    display:block;
+  }
+  .section-head h2{
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: clamp(28px, 4vw, 40px);
+    letter-spacing: -0.01em;
+  }
+  .section-head p{
+    margin-top: 14px;
+    color: var(--taupe);
+    font-size: 16px;
+    max-width: 52ch;
+  }
+
+  /* ---------- ABOUT ---------- */
+  .about{
+    border-bottom: 1px solid var(--line);
+  }
+  .about-grid{
+    display:grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: 64px;
+  }
+  .about-lede{
+    font-family: var(--display);
+    font-weight: 400;
+    font-size: clamp(22px, 2.6vw, 28px);
+    line-height: 1.45;
+    color: var(--ink);
+  }
+  .about-lede em{ font-style: italic; color: var(--rust-deep); }
+  .about-text p{
+    color: var(--ink-soft);
+    margin-bottom: 16px;
+    font-size: 15.5px;
+  }
+  .about-text p:last-child{ margin-bottom: 0; }
+
+  .facts{
+    margin-top: 36px;
+    display:grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+  }
+  .fact{
+    background: var(--cream);
+    padding: 18px 20px;
+  }
+  .fact-label{
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--taupe);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 6px;
+  }
+  .fact-value{
+    font-family: var(--display);
+    font-size: 17px;
+    font-weight: 600;
+  }
+
+  @media (max-width: 840px){
+    .about-grid{ grid-template-columns: 1fr; gap: 40px; }
+  }
+
+  /* ---------- SKILLS ---------- */
+  .skills{ background: var(--cream-dim); border-bottom: 1px solid var(--line); }
+  .skill-cols{
+    display:grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+  }
+  .skill-col{
+    background: var(--cream-dim);
+    padding: 30px 28px;
+  }
+  .skill-col h3{
+    font-family: var(--mono);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--rust-deep);
+    margin-bottom: 18px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--line);
+  }
+  .skill-col ul{ list-style:none; }
+  .skill-col li{
+    font-size: 14.5px;
+    color: var(--ink-soft);
+    padding: 7px 0;
+    display:flex;
+    align-items:center;
+    gap: 10px;
+  }
+  .skill-col li::before{
+    content:"";
+    width: 5px; height: 5px;
+    background: var(--green);
+    border-radius: 50%;
+    flex-shrink:0;
+  }
+  @media (max-width: 900px){
+    .skill-cols{ grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 520px){
+    .skill-cols{ grid-template-columns: 1fr; }
+  }
+
+  /* ---------- PROJECTS ---------- */
+  .project{
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    overflow: hidden;
+    margin-bottom: 28px;
+    background: var(--cream);
+  }
+  .project-feature{
+    display:grid;
+    grid-template-columns: 1.05fr 0.95fr;
+  }
+  .project-visual{
+    background: var(--ink);
+    color: var(--cream);
+    padding: 44px 40px;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+    position: relative;
+    overflow:hidden;
+    min-height: 360px;
+  }
+  .project-visual::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background: radial-gradient(circle at 80% 90%, rgba(194,84,31,0.22), transparent 50%);
+  }
+  .market-tag{
+    position:relative;
+    font-family: var(--mono);
+    font-size: 11.5px;
+    color: var(--rust);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .market-name{
+    position:relative;
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: 44px;
+    margin-top: 14px;
+    line-height: 1.05;
+  }
+  .market-mock{
+    position:relative;
+    margin-top: 28px;
+    background: var(--cream);
+    border-radius: 6px;
+    padding: 16px;
+    color: var(--ink);
+  }
+  .market-mock .bar{
+    display:flex;
+    gap:6px;
+    margin-bottom: 12px;
+  }
+  .market-mock .bar span{
+    width:8px; height:8px; border-radius:50%;
+    background: var(--line);
+  }
+  .mock-grid{
+    display:grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 8px;
+  }
+  .mock-item{
+    background: var(--cream-dim);
+    border-radius: 4px;
+    padding: 10px 8px;
+    font-family: var(--mono);
+  }
+  .mock-item .sw{
+    width:100%; height: 28px;
+    border-radius: 3px;
+    margin-bottom: 8px;
+  }
+  .mock-item:nth-child(1) .sw{ background: var(--rust); }
+  .mock-item:nth-child(2) .sw{ background: var(--green); }
+  .mock-item:nth-child(3) .sw{ background: #B89B6A; }
+  .mock-item .price{ font-size: 10px; color: var(--taupe); }
+  .mock-item .price b{ color: var(--ink); font-size: 12px; }
+
+  .project-content{
+    padding: 44px 40px;
+    display:flex;
+    flex-direction:column;
+  }
+  .project-content h3{
+    font-family: var(--display);
+    font-size: 26px;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+  .project-role{
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--rust-deep);
+    margin-bottom: 20px;
+  }
+  .project-content p{
+    color: var(--ink-soft);
+    font-size: 15px;
+    margin-bottom: 14px;
+  }
+  .project-list{
+    list-style:none;
+    margin: 18px 0 24px;
+  }
+  .project-list li{
+    font-size: 14.5px;
+    color: var(--ink-soft);
+    padding-left: 22px;
+    position: relative;
+    margin-bottom: 10px;
+  }
+  .project-list li::before{
+    content:"→";
+    position:absolute;
+    left:0;
+    color: var(--rust);
+    font-weight:600;
+  }
+  .tag-row{
+    display:flex;
+    flex-wrap:wrap;
+    gap: 8px;
+    margin-top: auto;
+    padding-top: 18px;
+  }
+  .tag{
+    font-family: var(--mono);
+    font-size: 11.5px;
+    border: 1px solid var(--line);
+    padding: 5px 10px;
+    border-radius: 3px;
+    color: var(--taupe);
+  }
+
+  @media (max-width: 840px){
+    .project-feature{ grid-template-columns: 1fr; }
+    .project-visual{ min-height: auto; }
+  }
+
+  /* secondary project */
+  .project-secondary{
+    display:grid;
+    grid-template-columns: 0.5fr 1fr;
+  }
+  .ps-visual{
+    background: var(--cream-dim);
+    border-right: 1px solid var(--line);
+    padding: 36px 32px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .terminal{
+    background: var(--ink);
+    border-radius: 6px;
+    width: 100%;
+    font-family: var(--mono);
+    font-size: 11.5px;
+    color: #B8E0C8;
+    overflow:hidden;
+  }
+  .terminal-bar{
+    background: #14171A;
+    padding: 8px 12px;
+    display:flex;
+    gap:6px;
+  }
+  .terminal-bar span{ width:8px; height:8px; border-radius:50%; background:#3A3F45; }
+  .terminal-body{ padding: 16px; line-height: 1.8; }
+  .terminal-body .prompt{ color: var(--rust); }
+  .terminal-body .out{ color: #8A8E94; }
+
+  .ps-content{
+    padding: 36px 40px;
+  }
+  .ps-content h3{
+    font-family: var(--display);
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+  .ps-content .project-role{ margin-bottom: 14px; }
+  .ps-content p{ color: var(--ink-soft); font-size: 14.5px; margin-bottom: 14px; }
+
+  @media (max-width: 760px){
+    .project-secondary{ grid-template-columns: 1fr; }
+    .ps-visual{ border-right:none; border-bottom: 1px solid var(--line); padding: 32px; }
+  }
+
+  /* ---------- PROCESS / TIMELINE (parcours) ---------- */
+  .journey{ background: var(--ink); color: var(--cream); }
+  .journey .section-head p{ color: #B8B3AA; }
+  .journey .section-head h2{ color: var(--cream); }
+  .j-list{ position:relative; }
+  .j-list::before{
+    content:"";
+    position:absolute;
+    left: 7px;
+    top: 8px;
+    bottom: 8px;
+    width: 1px;
+    background: #3A3F45;
+  }
+  .j-item{
+    position:relative;
+    padding-left: 38px;
+    padding-bottom: 38px;
+  }
+  .j-item:last-child{ padding-bottom: 0; }
+  .j-item::before{
+    content:"";
+    position:absolute;
+    left: 0; top: 4px;
+    width: 15px; height: 15px;
+    border-radius: 50%;
+    background: var(--ink);
+    border: 2px solid var(--rust);
+  }
+  .j-item h4{
+    font-family: var(--display);
+    font-size: 19px;
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+  .j-item p{
+    color: #ACA89F;
+    font-size: 14.5px;
+    max-width: 56ch;
+  }
+
+  /* ---------- CONTACT ---------- */
+  .contact{ text-align:center; padding-bottom: 60px; }
+  .contact .section-head{ margin: 0 auto 40px; text-align:center; }
+  .contact h2{
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: clamp(32px, 5vw, 52px);
+    letter-spacing: -0.01em;
+  }
+  .contact h2 em{ font-style: italic; color: var(--rust); font-weight:400; }
+  .contact-sub{
+    color: var(--taupe);
+    max-width: 50ch;
+    margin: 18px auto 0;
+    font-size: 16px;
+  }
+  .contact-links{
+    margin-top: 38px;
+    display:flex;
+    justify-content:center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .contact-card{
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 20px 26px;
+    text-align:left;
+    min-width: 220px;
+    transition: border-color .2s ease, transform .2s ease;
+  }
+  .contact-card:hover{ border-color: var(--rust); transform: translateY(-2px); }
+  .contact-card .cc-label{
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--taupe);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 6px;
+  }
+  .contact-card .cc-value{
+    font-family: var(--body);
+    font-weight: 600;
+    font-size: 15px;
+  }
+
+  footer{
+    border-top: 1px solid var(--line);
+    padding: 28px 0;
+  }
+  .footer-inner{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--taupe);
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  @media (max-width: 600px){
+    section{ padding: 70px 0; }
+    .hero{ padding-top: 70px; }
+    .project-content, .project-visual{ padding: 30px 24px; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    *{ transition:none !important; }
+  }
+
+  /* ---------- WELCOME GATE ---------- */
+  .gate{
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    background: var(--ink);
+    display: flex;
+    cursor: pointer;
+  }
+  .gate-panel{
+    position: relative;
+    flex: 1;
+    overflow: hidden;
+    background: var(--ink);
+    transition: transform 1.1s cubic-bezier(.77,0,.18,1);
+  }
+  .gate-panel.left{ border-right: 1px solid #2A2F35; }
+  .gate-panel::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background-image: radial-gradient(circle at 20% 30%, rgba(194,84,31,0.10), transparent 45%),
+                       radial-gradient(circle at 80% 80%, rgba(47,111,78,0.08), transparent 40%);
+  }
+  .gate-mark{
+    position: absolute;
+    top: 36px;
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    color: #6B6258;
+    text-transform: uppercase;
+  }
+  .gate-panel.left .gate-mark{ right: 36px; }
+  .gate-panel.right .gate-mark{ left: 36px; }
+
+  .gate-center{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    z-index: 5;
+    text-align: center;
+    width: min(620px, 86vw);
+    color: var(--cream);
+    pointer-events: none;
+  }
+  .gate-eyebrow{
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--rust);
+    margin-bottom: 22px;
+    opacity: 0;
+    animation: gateRise .8s ease forwards .15s;
+  }
+  .gate-title{
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: clamp(32px, 5.2vw, 56px);
+    line-height: 1.12;
+    letter-spacing: -0.01em;
+    opacity: 0;
+    animation: gateRise .8s ease forwards .35s;
+  }
+  .gate-title em{
+    font-style: italic;
+    font-weight: 400;
+    color: var(--rust);
+  }
+  .gate-sub{
+    margin-top: 20px;
+    font-size: 15.5px;
+    color: #C7C2BA;
+    line-height: 1.7;
+    opacity: 0;
+    animation: gateRise .8s ease forwards .55s;
+  }
+  .gate-cue{
+    margin-top: 36px;
+    font-family: var(--mono);
+    font-size: 11.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #8A8E94;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    opacity: 0;
+    animation: gateRise .8s ease forwards .75s;
+  }
+  .gate-cue .pulse{
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: var(--rust);
+    animation: gatePulse 1.6s ease-in-out infinite;
+  }
+
+  @keyframes gateRise{
+    from{ opacity:0; transform: translateY(14px); }
+    to{ opacity:1; transform: translateY(0); }
+  }
+  @keyframes gatePulse{
+    0%,100%{ opacity:1; transform: scale(1); }
+    50%{ opacity:.4; transform: scale(.7); }
+  }
+
+  /* opening state */
+  .gate.opening .gate-panel.left{ transform: translateX(-100%); }
+  .gate.opening .gate-panel.right{ transform: translateX(100%); }
+  .gate.opening .gate-center{ opacity: 0; transition: opacity .4s ease; }
+  .gate.hidden{ display:none; }
+
+  body.gate-active{ overflow: hidden; height: 100vh; }
+
+  @media (max-width: 640px){
+    .gate-mark{ display:none; }
+  }
+</style>
+</head>
+<body class="gate-active">
+
+<div class="gate" id="gate">
+  <div class="gate-panel left"><span class="gate-mark">Well</span></div>
+  <div class="gate-panel right"><span class="gate-mark">Come</span></div>
+  <div class="gate-center">
+    <div class="gate-eyebrow">Lucie Vanessa Abomo Ondigui</div>
+    <h1 class="gate-title">Bienvenue dans <em>mon monde</em></h1>
+    <p class="gate-sub">Celui d'une développeuse qui aime construire des marchés en ligne aussi vivants que les vrais — étal par étal, ligne de code par ligne de code.</p>
+    <div class="gate-cue"><span class="pulse"></span>Cliquez, ou patientez, pour entrer</div>
+  </div>
+</div>
+
+<script>
+  (function(){
+    var gate = document.getElementById('gate');
+    var opened = false;
+    function openGate(){
+      if (opened) return;
+      opened = true;
+      gate.classList.add('opening');
+      document.body.classList.remove('gate-active');
+      setTimeout(function(){ gate.classList.add('hidden'); }, 1150);
+    }
+    gate.addEventListener('click', openGate);
+    window.addEventListener('keydown', function(e){
+      if (e.key === 'Enter' || e.key === ' ') openGate();
+    });
+    setTimeout(openGate, 3800);
+  })();
+</script>
+
+
+<header class="nav">
+  <div class="nav-inner">
+    <div class="nav-mark"><span class="dot"></span>LVAO</div>
+    <nav class="nav-links">
+      <a href="#about">Profil</a>
+      <a href="#skills">Compétences</a>
+      <a href="#demo">Démo live</a>
+      <a href="#architecture">Backend</a>
+      <a href="#projects">Projets</a>
+      <a href="#journey">Parcours</a>
+    </nav>
+    <a class="nav-cta" href="#contact">Me contacter</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-inner">
+    <div>
+      <div class="eyebrow">Portfolio développeuse</div>
+      <h1>Abomo Ondigui<br>Lucie <em>Vanessa</em></h1>
+      <p class="hero-sub">Développeuse full-stack qui construit des outils utiles, du marché au navigateur. Je conçois des produits e-commerce complets — interface, logique serveur et base de données — pensés pour de vrais vendeurs et de vrais acheteurs.</p>
+      <div class="hero-actions">
+        <a href="#demo" class="btn btn-primary">Voir la démo live</a>
+        <a href="#projects" class="btn btn-ghost">Mes projets</a>
+      </div>
+    </div>
+
+    <div>
+      <div class="receipt">
+        <div class="receipt-head">
+          <div class="name">Ooh Marché</div>
+          <div class="role">Projet phare — e-commerce</div>
+        </div>
+        <div class="receipt-row"><span>Frontend</span><span>HTML / CSS / JS</span></div>
+        <div class="receipt-row"><span>Backend</span><span>Node.js / Express</span></div>
+        <div class="receipt-row"><span>Base de données</span><span>SQLite</span></div>
+        <div class="receipt-total"><span>Statut</span><span>Livré ✓</span></div>
+        <div class="receipt-foot">MERCI DE VISITER LE PORTFOLIO</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="scroll-cue">
+      <span>Yaoundé, Cameroun</span>
+      <span>Développement full-stack</span>
+    </div>
+  </div>
+</section>
+
+<section class="demo-section" id="demo">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-num">Démo live</span>
+      <h2>Ooh Marché, en action</h2>
+      <p>Le site tourne ici même, directement dans la page. Navigue dans les catégories, ajoute un article au panier, teste le parcours d'achat.</p>
+    </div>
+
+    <div class="demo-frame-wrap">
+      <div class="demo-toolbar">
+        <div class="dots"><span></span><span></span><span></span></div>
+        <div class="demo-url">ooh-marche.demo</div>
+        <a class="demo-open" href="demo/index.html" target="_blank" rel="noopener">Ouvrir en plein écran ↗</a>
+      </div>
+      <iframe src="demo/index.html" title="Démo en direct du site Ooh Marché" loading="lazy"></iframe>
+    </div>
+
+    <p class="demo-note">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#6B6258" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+      Démo de présentation : certaines images produits ne sont pas chargées (fichiers non inclus dans cet export), mais toute l'interface et les interactions sont fonctionnelles.
+    </p>
+  </div>
+</section>
+
+<section class="architecture" id="architecture">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-num">Côté serveur</span>
+      <h2>Le backend derrière la vitrine</h2>
+      <p>Ce que l'iframe ne montre pas : une API Express avec authentification, gestion de rôles et persistance des données.</p>
+    </div>
+
+    <div class="arch-grid">
+      <div class="arch-stack">
+        <h3>Stack technique</h3>
+        <div class="stack-row"><span class="stack-role">Serveur</span><span class="stack-tech">Node.js + Express</span></div>
+        <div class="stack-row"><span class="stack-role">Base de données</span><span class="stack-tech">SQLite (better-sqlite3)</span></div>
+        <div class="stack-row"><span class="stack-role">Authentification</span><span class="stack-tech">JWT + bcrypt</span></div>
+        <div class="stack-row"><span class="stack-role">Sécurité connexion</span><span class="stack-tech">Vérification à 2 facteurs</span></div>
+        <div class="stack-row"><span class="stack-role">Emails</span><span class="stack-tech">Nodemailer (SMTP)</span></div>
+        <div class="stack-row"><span class="stack-role">Rôles</span><span class="stack-tech">Client / Gérant / Admin</span></div>
+        <p class="arch-note">L'API gère trois niveaux d'accès distincts : un client achète, un gérant administre sa boutique et ses produits, un admin valide les nouveaux gérants et modère la plateforme.</p>
+      </div>
+      <div class="arch-routes">
+        <h3>Aperçu de l'API</h3>
+
+        <div class="route-group">
+          <div class="route-group-label">Authentification</div>
+          <div class="route"><span class="method">POST</span><span class="path">/api/auth/register</span></div>
+          <div class="route"><span class="method">POST</span><span class="path">/api/auth/login</span></div>
+          <div class="route"><span class="method">POST</span><span class="path">/api/auth/verify-2fa</span></div>
+          <div class="route"><span class="method">POST</span><span class="path">/api/auth/forgot-password</span></div>
+        </div>
+
+        <div class="route-group">
+          <div class="route-group-label">Produits & boutiques</div>
+          <div class="route"><span class="method get">GET</span><span class="path">/api/categories/:categorie/produits</span></div>
+          <div class="route"><span class="method">POST</span><span class="path">/api/categories/:categorie/produits</span></div>
+          <div class="route"><span class="method delete">DELETE</span><span class="path">/api/produits/:id</span></div>
+        </div>
+
+        <div class="route-group">
+          <div class="route-group-label">Commandes & expédition</div>
+          <div class="route"><span class="method">POST</span><span class="path">/api/commandes</span></div>
+          <div class="route"><span class="method get">GET</span><span class="path">/api/commandes/user/:userId</span></div>
+          <div class="route"><span class="method get">GET</span><span class="path">/api/expedition/:shopKey</span></div>
+        </div>
+
+        <div class="route-group">
+          <div class="route-group-label">Administration</div>
+          <div class="route"><span class="method get">GET</span><span class="path">/api/admin/gerants-en-attente</span></div>
+          <div class="route"><span class="method put">PUT</span><span class="path">/api/admin/valider-gerant/:id</span></div>
+          <div class="route"><span class="method">POST</span><span class="path">/api/admin/gerants/:id/ban</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="about" id="about">
+  <div class="wrap about-grid">
+    <div>
+      <span class="section-num">01 — Profil</span>
+      <p class="about-lede">Je crois qu'un bon site marchand commence par <em>comprendre le marché</em>, pas seulement écrire du code.</p>
+    </div>
+    <div class="about-text">
+      <p>Je m'appelle Lucie Vanessa Abomo Ondigui. Je suis développeuse full-stack, avec un attrait particulier pour les projets e-commerce qui rapprochent vendeurs et acheteurs grâce au web.</p>
+      <p>Mon projet phare, <strong>Ooh Marché</strong>, est né de cette envie : recréer en ligne la simplicité et la vivacité d'un marché. Le site couvre tout le parcours, de l'interface visible jusqu'au serveur : navigation produits, comptes utilisateurs avec rôles (client, gérant, admin), authentification sécurisée à deux facteurs, panier et commandes, le tout connecté à une vraie base de données.</p>
+      <p>Curieuse et rigoureuse, j'aime autant les défis logiques d'un projet académique en C++ que la construction complète d'une plateforme web, du design jusqu'au serveur qui la fait tourner.</p>
+
+      <div class="facts">
+        <div class="fact">
+          <div class="fact-label">Spécialité</div>
+          <div class="fact-value">Full-stack web</div>
+        </div>
+        <div class="fact">
+          <div class="fact-label">Projet phare</div>
+          <div class="fact-value">Ooh Marché</div>
+        </div>
+        <div class="fact">
+          <div class="fact-label">Backend</div>
+          <div class="fact-value">Node.js + SQLite</div>
+        </div>
+        <div class="fact">
+          <div class="fact-label">Localisation</div>
+          <div class="fact-value">Yaoundé, CM</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="skills" id="skills">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-num">02 — Compétences</span>
+      <h2>Les outils derrière chaque projet</h2>
+      <p>De l'interface visible par l'utilisateur jusqu'à la logique qui la fait fonctionner.</p>
+    </div>
+
+    <div class="skill-cols">
+      <div class="skill-col">
+        <h3>Frontend</h3>
+        <ul>
+          <li>HTML5 sémantique</li>
+          <li>CSS3 (mise en page, responsive)</li>
+          <li>JavaScript</li>
+          <li>Conception d'interfaces e-commerce</li>
+        </ul>
+      </div>
+      <div class="skill-col">
+        <h3>Backend & données</h3>
+        <ul>
+          <li>Node.js / Express</li>
+          <li>API REST</li>
+          <li>Authentification JWT</li>
+          <li>SQLite</li>
+        </ul>
+      </div>
+      <div class="skill-col">
+        <h3>Algorithmique</h3>
+        <ul>
+          <li>C++</li>
+          <li>Structures de contrôle & fonctions</li>
+          <li>Résolution de problèmes</li>
+          <li>Projets académiques</li>
+        </ul>
+      </div>
+      <div class="skill-col">
+        <h3>Méthode</h3>
+        <ul>
+          <li>Conception centrée utilisateur</li>
+          <li>Structuration de produit e-commerce</li>
+          <li>Rigueur & autonomie</li>
+          <li>Apprentissage continu</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-num">03 — Projets</span>
+      <h2>Ce que j'ai construit</h2>
+      <p>Un projet phare e-commerce, et un projet académique qui a posé les bases de ma logique de développeuse.</p>
+    </div>
+
+    <div class="project project-feature">
+      <div class="project-visual">
+        <div>
+          <div class="market-tag">Projet phare</div>
+          <div class="market-name">Ooh Marché</div>
+        </div>
+        <div class="market-mock">
+          <div class="bar"><span></span><span></span><span></span></div>
+          <div class="mock-grid">
+            <div class="mock-item"><div class="sw"></div><div class="price">Article<br><b>2 500 FCFA</b></div></div>
+            <div class="mock-item"><div class="sw"></div><div class="price">Article<br><b>4 000 FCFA</b></div></div>
+            <div class="mock-item"><div class="sw"></div><div class="price">Article<br><b>1 200 FCFA</b></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="project-content">
+        <h3>Ooh Marché</h3>
+        <div class="project-role">Site e-commerce / marketplace — conception & développement</div>
+
+        <a href="#demo" class="btn btn-primary" style="margin-top:20px; align-self:flex-start;">Voir la démo live ↑</a>
+      </div>
+    </div>
+
+    <div class="project project-secondary">
+      <div class="ps-visual">
+        <div class="terminal">
+          <div class="terminal-bar"><span></span><span></span><span></span></div>
+          <div class="terminal-body">
+            <div><span class="prompt">$</span> ./calculatrice</div>
+            <div class="out">Entrez une opération :</div>
+            <div>12 + 8</div>
+            <div class="out">Résultat : 20</div>
+            <div><span class="prompt">$</span> _</div>
+          </div>
+        </div>
+      </div>
+      <div class="ps-content">
+        <h3>Calculatrice en C++</h3>
+        <div class="project-role">Projet scolaire — algorithmique</div>
+        <p>Un projet académique réalisé en C++ pour mettre en pratique la logique de programmation : gestion des opérations, des entrées utilisateur et des cas d'erreur.</p>
+        <div class="tag-row">
+          <span class="tag">C++</span>
+          <span class="tag">Algorithmique</span>
+          <span class="tag">Projet académique</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="journey" id="journey">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-num">04 — Parcours</span>
+      <h2>Comment j'en suis arrivée là</h2>
+      <p>Des bases en logique pure jusqu'à la construction d'un produit e-commerce complet.</p>
+    </div>
+
+    <div class="j-list">
+      <div class="j-item">
+        <h4>Les fondations en logique</h4>
+        <p>Premiers pas en programmation avec C++ à travers un projet de calculatrice : apprendre à décomposer un problème avant de l'écrire en code.</p>
+      </div>
+      <div class="j-item">
+        <h4>Vers le web</h4>
+        <p>Apprentissage du HTML, CSS et JavaScript pour construire des interfaces complètes, du squelette de la page jusqu'aux interactions.</p>
+      </div>
+      <div class="j-item">
+        <h4>Côté serveur</h4>
+        <p>Montée en compétence sur Node.js et Express pour donner une vraie logique métier au site : comptes utilisateurs, authentification, base de données.</p>
+      </div>
+      <div class="j-item">
+        <h4>Ooh Marché</h4>
+        <p>Conception et développement d'une plateforme e-commerce complète, en pensant le site comme un vrai marché : clair, accessible, pensé pour l'acheteur — et solide derrière le rideau.</p>
+      </div>
+      <div class="j-item">
+        <h4>Aujourd'hui</h4>
+        <p>Je continue à renforcer mes compétences full-stack, à la recherche de nouveaux projets pour faire grandir mon savoir-faire.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-num">05 — Contact</span>
+      <h2>Discutons de votre <em>prochain projet</em></h2>
+      <p class="contact-sub">Disponible pour des opportunités en développement web, des collaborations ou simplement échanger autour d'un projet.</p>
+    </div>
+
+    <div class="contact-links">
+      <a class="contact-card" href="mailto:ucievanessaabomoondigui@gmail.com">
+        <div class="cc-label">Email</div>
+        <div class="cc-value">ucievanessaabomoondigui@gmail.com</div>
+      </a>
+      <a class="contact-card" href="tel:+237696721716">
+        <div class="cc-label">Téléphone</div>
+        <div class="cc-value">+237 696 721 716</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap footer-inner">
+    <span>© 2026 Lucie Vanessa Abomo Ondigui</span>
+    <span>Conçu & codé avec soin</span>
+  </div>
+</footer>
+
+</body>
+</html>
